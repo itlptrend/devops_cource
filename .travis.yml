@@ -9,11 +9,13 @@ before_install:
   - echo before_install
   - ls /
   - cat /etc/issue
-
-  - apt-get update
+  - sudo apt-get update
 script:
   - echo script
 
 notifications:
   slack:
-    secure: R0oRBLiDaM5vIVsRbhw8LAYy/PzBOY70vCFRgRvYqCh0aI5Xr/0m+WA8o2dPaFAyjqTlE5XjR3nrMaQX90Qj2keDHEVXKMFGNT9Z5NWeECs6BmqGOSYZSIQ05zK6iG5Puk66TSjrewn0Io9iPEoWDMyiba+q2muYAsLqsYaxhazTwkfhfQe8fSapRmnPcXfQm4wWCZx4SiK39BCnN2g78yTxntX45g8URx+r9tUYNPpE2ZmvKh8vQiqoNVqyuNKMODcruQvR13usxjD3nQWP5pNlYtJDe+oebZ/ff/jJAFf2Sqew1QSMITjwnV8c8hx7ImoVwiUI4mm+Y7RjeXEEv4kJ7mlsppXfWHW8r5sg9XMoNwgjFtKGNR0hh4W0mHBpWJBajamM1J0W3wty9FUtiyX7mpTWszaxCFiA0w/vWxmSyaxaP23mWQskO8lAkpTGfxzCwR11b+vbslnglwI/dZEZnxMVCezMELe/e56vl9DY2Zo5zpF5NYNhGwNnzJ9gY2Bkku6/S+L64A6TX/BS7B2Ub8Hf9SdCjyEhfTTKZQy2jbsKNW2vWDZAB/XKluRty51a81qBz8mGq8F+OO1mieg5nGe9PKWOjXrc1NHE6tQR07EUZh5JAiiTRI7FYNaUwTnpOtXKXtq3DTzzKvYlMp23d61tzRQwbK4M6TgAmwI=
+    rooms:
+      secure: oQ5yb1Gw4DDi+UIen6rtzAEl3/Ydt4gGr7RLejt32O22lAO4pMdzPj9p2k3c6g0n62OKClypFlB6k5AvpX6sVwIRvYunlQOXFPH/HG1WeeMm3SWJoXXYUToGUM4D4+WvG/QBgf0Ag6m5lYFk7mx7q7kSjIhUZOpO7P6yJHOXrNFJ9bYlu2s9C6CmO8FXqKUxPH78/QVXsaGfS7z0tfNK0n6aOvM0TSzPwoYrcn8knoTADOEysqwTUWjTJmv5UGHZh7tiQQz03TCV9TuU/XnlNf0Jnb+5sFYDaDvEJS/ipMnOXoJs8uW4CH/JCK8B586e7BKnBuRA22eyCPEF/7SHM+pQRA0HVDU5OgcKkFmFjjCWnDMdERz69JB06bsdeaiAB/4HHPiRB42BnOc/0hdhAQjmHGoRX1+DL6QmTo6E42K6IgK5VtFKPY6NlKIvKyQhnA+DUQZ7gDOyV3y0IV+yiUIXSH8jup8V604SHq8o+2g4Ic1QAKkl/1rsEDwRMnY5ALMSK9sjTVc52JwTDm2w14FRdHHGdHuRUES65e9WJd70DcdT0nu6yrWqre/PEhR9jc+BI7LO8QGm/zDDq+Q43ugknblkY3Rs+RZxBIBYIeJ+Ojho4t2HllRkmK0tGis92Z9i1elUKlGSlb0t6XudKD0WLss4L5Ptj1ZtIDOSaGY=
+    on_success: always # default: always
+    on_failure: always # default: always
