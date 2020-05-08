@@ -9,6 +9,7 @@ before_install:
   - echo before_install
   - ls /
   - cat /etc/issue
+
   - apt-get update
 script:
   - echo script
