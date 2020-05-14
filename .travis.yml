@@ -6,10 +6,7 @@ language: bash
 #  - curl https://raw.githubusercontent.com/express42/otus-homeworks/2019-02/run.sh | bash
 
 before_install:
-  - echo before_install
-  - ls /
-  - cat /etc/issue
-  - sudo apt-get update
+  - curl https://raw.githubusercontent.com/express42/otus-homeworks/2019-02/run.sh | bash
 script:
   - echo script
 
@@ -19,3 +16,4 @@ notifications:
       secure: oQ5yb1Gw4DDi+UIen6rtzAEl3/Ydt4gGr7RLejt32O22lAO4pMdzPj9p2k3c6g0n62OKClypFlB6k5AvpX6sVwIRvYunlQOXFPH/HG1WeeMm3SWJoXXYUToGUM4D4+WvG/QBgf0Ag6m5lYFk7mx7q7kSjIhUZOpO7P6yJHOXrNFJ9bYlu2s9C6CmO8FXqKUxPH78/QVXsaGfS7z0tfNK0n6aOvM0TSzPwoYrcn8knoTADOEysqwTUWjTJmv5UGHZh7tiQQz03TCV9TuU/XnlNf0Jnb+5sFYDaDvEJS/ipMnOXoJs8uW4CH/JCK8B586e7BKnBuRA22eyCPEF/7SHM+pQRA0HVDU5OgcKkFmFjjCWnDMdERz69JB06bsdeaiAB/4HHPiRB42BnOc/0hdhAQjmHGoRX1+DL6QmTo6E42K6IgK5VtFKPY6NlKIvKyQhnA+DUQZ7gDOyV3y0IV+yiUIXSH8jup8V604SHq8o+2g4Ic1QAKkl/1rsEDwRMnY5ALMSK9sjTVc52JwTDm2w14FRdHHGdHuRUES65e9WJd70DcdT0nu6yrWqre/PEhR9jc+BI7LO8QGm/zDDq+Q43ugknblkY3Rs+RZxBIBYIeJ+Ojho4t2HllRkmK0tGis92Z9i1elUKlGSlb0t6XudKD0WLss4L5Ptj1ZtIDOSaGY=
     on_success: always # default: always
     on_failure: always # default: always
+
