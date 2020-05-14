@@ -17,3 +17,7 @@ gcloud config set project shikanov-project
 gcloud compute firewall-rules create puma-server --allow tcp:9292 --target-tags=puma-server
 #удалил
 gcloud compute instances delete reddit-app2 --zone=europe-west4-a
+
+#Это для их CI
+testapp_IP = 35.198.167.169
+testapp_port = 9292
