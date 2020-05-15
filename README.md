@@ -21,3 +21,8 @@ gcloud compute instances delete reddit-app2 --zone=europe-west4-a
 #Это для их CI
 testapp_IP = 35.198.167.169
 testapp_port = 9292
+
+lesson7  PACKER
+gcloud auth application-default login //креды делает в  /home/ashikanov/.config/gcloud/application_default_credentials.json
+
+
