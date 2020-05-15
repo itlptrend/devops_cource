@@ -25,5 +25,5 @@ testapp_port = 9292
      lesson7  PACKER
 gcloud auth application-default login //креды делает в  /home/ashikanov/.config/gcloud/application_default_credentials.json
 packer build ubuntu16.json
-packer build -var-file ubuntu16.json
+packer build -var-file file ubuntu16.json
 packer build -var 'gcp_project_id=shikanov-project' -var 'source_image_family=ubuntu-1604-lts'  ubuntu16.json
