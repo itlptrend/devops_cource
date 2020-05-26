@@ -27,3 +27,20 @@ gcloud auth application-default login //креды делает в  /home/ashika
 packer build ubuntu16.json
 packer build -var-file file ubuntu16.json
 packer build -var 'gcp_project_id=shikanov-project' -var 'source_image_family=ubuntu-1604-lts'  ubuntu16.json
+
+
+	Lesson8 Terrafirm1  Версию взял 1.12, у них 1.11
+terraform init
+terraform  plan
+terraform  apply -auto-approve=true
+terraform show | grep nat_ip //или cat terraform.tfstate | grep nat_ip
+terraform refresh //назначит переменную из outputs.tf
+terraform output //покажет переменные из output
+  провижинеры выполняются по порядку их определения
+  провижинеры по умолчанию запускаются сразу после создания ресурса(могут еще запускаться после его удаления)
+terraform taint google_compute_instance.app //пометить ресурс для пересоздания при след apply
+terraform plan
+terraform apply
+terraform  destroy
+terraform fmt //форматирует файлы?
+  ssh ключи. Он их удаляет и добавляет, когда убираеш или добавляеш в конфиг. Похоже хранит инфу в terraform.tfstate (проверить)
