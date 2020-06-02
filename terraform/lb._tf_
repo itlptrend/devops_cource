@@ -1,3 +1,4 @@
+#not used. when not .tf
 resource "google_compute_http_health_check" "nlb-hc" {
     name               = "nlb-health-checks"
     request_path       = "/"
@@ -26,4 +27,9 @@ resource "google_compute_forwarding_rule" "network-load-balancer" {
     port_range            = "9292"
     ip_protocol           = "TCP"
     load_balancing_scheme = "EXTERNAL"
+}
+
+
+output "lb_external_ip" {
+    value = google_compute_forwarding_rule.network-load-balancer.ip_address
 }

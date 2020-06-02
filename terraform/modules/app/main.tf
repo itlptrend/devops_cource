@@ -1,26 +1,21 @@
-terraform {
-  # Версия terraform
-  required_version = "0.12.25"
-}
-provider "google" {
-  # Версия провайдера
-  version = "2.5.0"
-  # ID проекта
-  project = var.project
-  region  = var.region
+    #  IP
+resource "google_compute_address" "app_ip" {
+  name = "reddit-app-ip"
 }
 
+
+    #  VIRTUALKA APP
 resource "google_compute_instance" "app" {
   name         = "reddit-app-${count.index}"
   machine_type = "g1-small"
-  zone         = var.gcp_zone
+  zone         = var.zone
   tags         = ["reddit-app"]
   # count        = var.app_instance_count
-  count = 2
+  count = 1
   # определение загрузочного диска
   boot_disk {
     initialize_params {
-      image = var.disk_image
+      image = var.app_disk_image
       # image = "reddit-base"
     }
   }
@@ -28,14 +23,20 @@ resource "google_compute_instance" "app" {
   network_interface {
     # сеть, к которой присоединить данный интерфейс
     network = "default"
+
     # использовать ephemeral IP для доступа из Интернет
-    access_config {}
+    # access_config {}  #Вот так они сами выдадут IP.
+
+    #Испоьлзовать внешний айпи выданный в google_compute_address. Сначала сделает IP, потом будет создавать виртуалку.
+    access_config {
+      nat_ip = google_compute_address.app_ip.address
+    }
   }
 
-  scheduling {
-    preemptible = true
-    automatic_restart = false
-  }
+  # scheduling {
+  #   preemptible = true
+  #   automatic_restart = false
+  # }
 
   metadata = {
     # путь до публичного ключа
@@ -55,14 +56,22 @@ EOT
     private_key = file(var.private_key_path)
   }
 
+  provisioner "remote-exec" {
+    inline = [
+      "sudo /bin/bash -c 'echo DATABASE_URL=${element(split(" ", element(var.db_external_ip, 0)), 2)} > /etc/default/puma'",
+    ]
+  }
+
   provisioner "file" {
-    source      = "files/puma.service"
+    source      = "${path.module}/files/puma.service"
     destination = "/tmp/puma.service"
   }
   provisioner "remote-exec" {
-    script = "files/deploy.sh"
+    script = "${path.module}/files/deploy.sh"
   }
 }
+
+      #FIREWALL
 
 resource "google_compute_firewall" "firewall_puma" {
   name = "allow-puma-default"
