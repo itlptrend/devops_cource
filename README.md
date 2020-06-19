@@ -31,6 +31,7 @@ packer build -var-file file ubuntu16.json
 packer build -var 'gcp_project_id=shikanov-project' -var 'source_image_family=ubuntu-1604-lts'  ubuntu16.json
 #deug
 packer -debug //создаст ключ, поменя права на 600. Будет спрашивать тебя после кадого действия
+packer build -var-file ./packer/variables.json ./packer/db_ansible.json
 ssh -i gce_googlecompute.pem packer@34.78.14.139
 
     	Lesson8 Terrafirm1  Версию взял 1.12, у них 1.11
@@ -84,3 +85,8 @@ terraform init //послеэ того он переместит все в ба�
      #taint module. Когда надо пересоздать конкретный ресурс.
 terraform  show | less
 terraform taint  module.db.google_compute_instance.db[0]
+
+
+ansible
+ansible-galaxy init name //создаст папку роли и структуру
+

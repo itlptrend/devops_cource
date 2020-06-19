@@ -23,3 +23,25 @@ variable "db_external_ip" {
   description = "db ip"
   type = list
 }
+
+
+
+#Не знаю как включать или выключать код. dynamic block не работает для provisioner
+#Это переменная просто пытался.
+variable "provision" {
+  description = "create or destroy"
+  # type string
+  default = "create"
+} 
+
+variable "_preemptible" {
+  description = ""
+  type = bool
+  default = false
+}
+
+variable "_automatic_restart" {
+  description = ""
+  type = bool
+  default = true
+}

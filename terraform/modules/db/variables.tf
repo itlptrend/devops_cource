@@ -13,3 +13,15 @@ variable db_disk_image {
 variable app_instance_count {
   default = 1
 }
+
+variable "_preemptible" {
+  description = ""
+  type = bool
+  default = false
+}
+
+variable "_automatic_restart" {
+  description = ""
+  type = bool
+  default = true
+}

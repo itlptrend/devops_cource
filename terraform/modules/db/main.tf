@@ -22,10 +22,10 @@ resource "google_compute_instance" "db" {
     access_config {}  #Вот так они сами выдадут IP.
   }
 
-  # scheduling {
-  #   preemptible = true
-  #   automatic_restart = false
-  # }
+  scheduling {
+    preemptible = var._preemptible
+    automatic_restart = var._automatic_restart
+  }
 
   metadata = {
     # путь до публичного ключа
