@@ -109,3 +109,4 @@ packer validate для всех шаблонов   //packer validate -var-file .
 terraform validate и tflint для окружений stage и prod
 ansible-lint для плейбуков Ansible
 Для отладки прохождения тестов советуем воспользоваться "trytravis".
+
