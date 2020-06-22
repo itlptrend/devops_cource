@@ -8,7 +8,7 @@
   "builders": [
     {
     "type": "googlecompute",
-    "project_id": "shikanov-project",
+    "project_id": "{{user `gcp_project_id` }}",
     "image_name": "reddit-db-{{timestamp}}",
     "image_family": "reddit-db",
     "source_image_family": "{{user `source_image_family` }}",

@@ -19,6 +19,8 @@ module "app" {
   app_disk_image   = var.app_disk_image
   private_key_path = var.private_key_path
   db_external_ip   = module.db.db_external_ip
+  _preemptible = false
+  _automatic_restart = true
 }
 
 module "db" {
@@ -26,6 +28,8 @@ module "db" {
   public_key_path = var.public_key_path
   zone            = var.gcp_zone
   db_disk_image   = var.db_disk_image
+  _preemptible = false
+  _automatic_restart = true
 }
 
 module "vpc" {

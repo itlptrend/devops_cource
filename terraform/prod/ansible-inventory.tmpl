@@ -1,0 +1,14 @@
+%{ for index, name in server_names ~}
+${name} ansible_host=${server_ips[index]}
+%{ endfor ~}
+
+
+[app]
+%{ for index, name in server_group_app ~}
+${name}
+%{ endfor ~}
+
+[db]
+%{ for index, name in server_group_db ~}
+${name}
+%{ endfor ~}

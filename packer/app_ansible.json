@@ -8,7 +8,7 @@
   "builders": [
     {
     "type": "googlecompute",
-    "project_id": "shikanov-project",
+    "project_id": "{{user `gcp_project_id` }}",
     "image_name": "reddit-app-{{timestamp}}",
     "image_family": "reddit-app",
     "source_image_family": "{{user `source_image_family` }}",
@@ -20,7 +20,7 @@
   "provisioners": [
     {
     "type": "ansible",
-    "playbook_file": "ansible/packer_app.yml"
+    "playbook_file": "ansible/playbooks/packer_app.yml"
     }
   ]
 }

@@ -1,7 +1,7 @@
 # devops_cource
 
 GCP
-gcloud auth login gcpshikanov
+gcloud auth login $username //google account username
 gcloud config set project shikanov-project
 #инстанс
  gcloud compute instances create reddit-app \
@@ -66,7 +66,7 @@ terraform import google_compute_firewall.firewall_ssh default-allow-ssh   //им
 Сначала сделает IP, потом будет создавать виртуалку. Смотри main.tf. 
 depends_on  - явная зависимость
 
-      Модули
+  Модули
 # Есть готовые модули в registry Verified это модули от HashiCorp и ее партнеров.
 # https://registry.terraform.io/browse/modules?provider=google
 # https://registry.terraform.io/modules/SweetOps/storage-bucket/google/0.3.1
@@ -76,7 +76,7 @@ terraform get
 
 tree .terraform
 
-     #state
+      #state
 в корне storage-bucket.tf. делаем terraform.init, terraform apply.
 Бакет создан.
 идем в prod.
@@ -87,6 +87,25 @@ terraform  show | less
 terraform taint  module.db.google_compute_instance.db[0]
 
 
-ansible
+      ansible
 ansible-galaxy init name //создаст папку роли и структуру
+Директория group_vars , созданная в директории плейбука или инвентори файла позволяет создавать файлы (имена, которых должны соответствовать названиям групп в ин
+#galaxy hоли добавь в gitignore
+ansible-playbook -i environments/prod/inventory playbooks/site.yml -С
+ansible-playbook  playbooks/site.yml -С //в ansible.cfg указан environments/stage/inventory
+  #vault
+#в конфиге указан vault_password_file = vault.key. им и шифрует
+ansible-vault encrypt environments/prod/credentials.yml 
+ansible-vault edit <file>  //edit
+ansible-vault decrypt <file>  //decrypt
+  #ВАЖНО! На версии 2.7. при зашифровывании  environments/stage/credentials.yml(Ключ в ansible.cfg). и запуске
+ansible-playbook playbooks/users.yml  //он выдовал ошибку! 
+Unexpected Exception, this is probably a bug: 'ascii' codec can't decode byte 0xd0 in position 53: ordinal not in range(128)
+В 2.9 версии это пофиксили. ПО этэому решил расшифровать.
 
+  #Добавить в тревис
+  #Необходимо, чтобы для коммитов в master и PR выполнялись как минимум эти действия:
+packer validate для всех шаблонов   //packer validate -var-file ./packer/variables.json ./packer/app_ansible.json
+terraform validate и tflint для окружений stage и prod
+ansible-lint для плейбуков Ansible
+Для отладки прохождения тестов советуем воспользоваться "trytravis".

@@ -1,5 +1,4 @@
 variable project {
-  #  default = "shikanov-project"
   description = "Project ID"
 }
 variable region {
